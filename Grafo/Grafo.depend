@@ -1,0 +1,52 @@
+# depslib dependency file v1.0
+1562524739 source:c:\users\arthur\desktop\grafo\main.cpp
+	"grafo.h"
+
+1562523872 c:\users\arthur\desktop\grafo\grafo.h
+	"vertice.h"
+	"heap.h"
+	<fstream>
+	<iostream>
+	<float.h>
+	<math.h>
+	<vector>
+
+1562515040 c:\users\arthur\desktop\grafo\vertice.h
+	<iostream>
+
+1562524653 source:c:\users\arthur\desktop\grafo\grafo.cpp
+	"grafo.h"
+
+1562523779 source:c:\users\arthur\desktop\grafo\heap.cpp
+	"heap.h"
+
+1562523661 c:\users\arthur\desktop\grafo\heap.h
+	"vertice.h"
+	<iostream>
+	<math.h>
+
+1562249375 source:c:\users\usuario\downloads\ord-master\grafo\grafo.cpp
+	"grafo.h"
+
+1562245122 c:\users\usuario\downloads\ord-master\grafo\grafo.h
+	"vertice.h"
+	"heap.h"
+	<fstream>
+	<iostream>
+	<float.h>
+	<math.h>
+
+1562234123 c:\users\usuario\downloads\ord-master\grafo\vertice.h
+	<iostream>
+
+1562245731 c:\users\usuario\downloads\ord-master\grafo\heap.h
+	"vertice.h"
+	<iostream>
+	<math.h>
+
+1562252190 source:c:\users\usuario\downloads\ord-master\grafo\heap.cpp
+	"heap.h"
+
+1562252246 source:c:\users\usuario\downloads\ord-master\grafo\main.cpp
+	"grafo.h"
+
