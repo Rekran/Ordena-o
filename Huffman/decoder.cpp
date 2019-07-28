@@ -1,6 +1,7 @@
 #include "decoder.h"
 
 decoder::decoder(char * filePath){
+    this->freqTotal = 0;
     this->mytree.nodes = new node[512];
     this->mytree.size = 256;
     FILE * file_in;
@@ -10,11 +11,10 @@ decoder::decoder(char * filePath){
     for(int i = 0; i < 256 ; i++){
         
         fread(&freq,sizeof(int),1,file_in);
-        if(freq > 0)
-            cout<<freq<<endl;
         this->mytree.nodes[i].frequency = freq;
         this->mytree.nodes[i].leaves = true;
         this->mytree.nodes[i].code_char = i;
+        this->freqTotal +=  this->mytree.nodes[i].frequency;
     }
 
     
@@ -41,25 +41,21 @@ this->mytree.root = &mytree.nodes[this->mytree.heap_t.extractMin()];
 (*this->mytree.root).parent = NULL;
     
  FILE * file_out;
- ofstream decode;
- file_out = fopen("teste.txt","wb");
- decode.open("teste_decode.txt",ofstream::out);
+ file_out = fopen("fib25","wb");
 
  int buffer[8];
  char byte;
  char mainBuffer[1024];
  int index = 0;
  node *aux = this->mytree.root;
-
+ int total = 0;
 while (fread(&byte,sizeof(char),1,file_in) == 1)
 {
 
-     for (int i = 7; i >= 0; --i)
+     for (int i = 7; i >= 0; i--)
      {
          (byte & (1 << i)) ? buffer[8 - (i+1)] = 1 : buffer[8 - (i+1)] = 0;
-         decode<<buffer[8 - (i+1)];
      }
-        decode<<"\n";
 
      for (int i = 0; i < 8; i++)
     {
@@ -74,6 +70,7 @@ while (fread(&byte,sizeof(char),1,file_in) == 1)
             mainBuffer[index] = aux->code_char;
             aux = this->mytree.root;
             index += 1;
+            total+=1;
 
             if(index == 1024){
                 fwrite(&mainBuffer,sizeof(char),index,file_out);
@@ -89,5 +86,5 @@ if(index > 0)
 
 fclose(file_in);
 fclose(file_out);
-
+cout<<total<<" "<<this->freqTotal<<endl;
 }

@@ -3,8 +3,8 @@
 
 int main(){
    
-    tree("generated.equal");
-    decoder("teste.teste");
+    tree("generated.fib25");
+    decoder("teste.bin");
 
 return 0;
 }

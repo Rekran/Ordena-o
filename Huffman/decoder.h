@@ -6,7 +6,7 @@
 class decoder{
 private:
     tree mytree;
-
+    int freqTotal;
 public:
     decoder(char* filePath);
 

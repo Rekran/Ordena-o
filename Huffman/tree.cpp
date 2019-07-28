@@ -1,4 +1,14 @@
 #include "tree.h"
+
+void printbincharpad(char c)
+{
+    for (int i = 7; i >= 0; --i)
+    {
+        putchar( (c & (1 << i)) ? '1' : '0' );
+    }
+    putchar('\n');
+}
+
 tree::tree(){
 
    
@@ -54,7 +64,7 @@ fclose(file_in);
 char mainBuffer[1024];
     
     file_in = fopen(filePath,"rb");
-    file_out = fopen("teste.teste","wb");
+    file_out = fopen("teste.bin","wb");
 
     for(int k = 0; k < 256;k++)
         fwrite(&this->nodes[k].frequency,sizeof(int),1,file_out);
@@ -62,6 +72,7 @@ char mainBuffer[1024];
 int index = 0;
 char buffer_char = 0;
 int pos = 1;
+int total = 0;
 
 while(fread(&buffer,sizeof(char),1,file_in) == 1){
     int i = (BUFFER - this->nodes[buffer].code_bi.size);
@@ -77,11 +88,12 @@ while(fread(&buffer,sizeof(char),1,file_in) == 1){
         }
 
     buffer_char = buffer_char | aux;
-    if(pos == 8){
+    if(pos == 9){
         mainBuffer[index] = buffer_char;
         pos = 1;
         buffer_char = 0;
         index += 1;
+
     
         if(index == 1024){
             fwrite(&mainBuffer,sizeof(char),index,file_out);
@@ -90,12 +102,14 @@ while(fread(&buffer,sizeof(char),1,file_in) == 1){
     }
     i += 1;
     }
+    total += 1;
 }
 if(index > 0){
     fwrite(&mainBuffer[0],sizeof(char),index,file_out);
 }
 
 fclose(file_out);
+cout<<total<<endl;
 }
 
 void tree::code_generetor(int i){
